@@ -128,3 +128,143 @@ cy.get() → localização OK → should() → esperado 3 / encontrado 2 → FAI
 
 É importante diferenciar uma falha de localização de uma falha de assertion.
 
+## Primeiros conceitos de Cypress
+
+### Estrutura básica de um teste
+
+Um spec Cypress pode ser organizado com:
+
+describe('Nome da suíte', () => {
+
+  it('descrição do teste', () => {
+    // comandos
+  })
+
+})
+
+- `describe()` agrupa testes relacionados.
+- `it()` representa um caso de teste.
+- `cy` é o objeto utilizado para executar os comandos do Cypress.
+
+### Spec
+
+Um arquivo de teste do Cypress normalmente utiliza a extensão:
+
+`.cy.js`
+
+Exemplo:
+
+`primeiro-teste.cy.js`
+
+Os specs ficam dentro de:
+
+`cypress/e2e/`
+
+Neste projeto, os exercícios próprios estão organizados em:
+
+`cypress/e2e/projeto-demo/`
+
+### Navegação
+
+`cy.visit()` acessa uma URL.
+
+Exemplo:
+
+cy.visit('https://example.cypress.io')
+
+### Assertions
+
+Uma ação não significa necessariamente uma validação.
+
+Exemplo:
+
+cy.visit('https://example.cypress.io')
+
+apenas navega para a página.
+
+Para validar um resultado podemos utilizar:
+
+cy.contains('Kitchen Sink').should('be.visible')
+
+Nesse caso:
+
+- `cy.contains()` procura um elemento pelo conteúdo de texto.
+- `should()` realiza uma assertion.
+- `be.visible` verifica se o elemento está visível.
+
+### Command Log
+
+O Cypress apresenta os comandos executados no painel de execução.
+
+Exemplo:
+
+visit
+contains
+assert
+
+É possível clicar nos comandos para investigar o estado da aplicação durante a execução.
+
+### Diagnóstico de falhas
+
+Falha de assertion:
+
+cy.get('.todo-list li').should('have.length', 3)
+
+Se forem encontrados 2 elementos:
+
+Esperado: 3
+Encontrado: 2
+
+O elemento foi localizado, mas a condição esperada não foi satisfeita.
+
+Falha de localização:
+
+cy.contains('Texto que nao existe').should('be.visible')
+
+Nesse caso, nenhum elemento correspondente foi encontrado.
+
+O Cypress informa o timeout e o conteúdo que esperava encontrar.
+
+### Retry-ability
+
+O Cypress possui mecanismo automático de retry para determinados comandos e assertions.
+
+Exemplo:
+
+cy.contains('Texto que nao existe')
+
+O Cypress continua tentando localizar o conteúdo durante o período de timeout configurado antes de considerar o comando como falho.
+
+Nos exercícios realizados, observamos:
+
+`Timed out retrying after 4000ms`
+
+### IntelliSense
+
+A diretiva:
+
+/// <reference types="cypress" />
+
+pode ser adicionada ao início do spec para que o VS Code reconheça os tipos do Cypress e disponibilize autocomplete para seus comandos.
+
+Ela não é necessária para que o teste seja executado pelo Cypress.
+
+### Primeiro teste próprio
+
+Foi criado o spec:
+
+`cypress/e2e/projeto-demo/primeiro-teste.cy.js`
+
+Exemplo atual:
+
+/// <reference types="cypress" />
+
+describe('Projeto Demo', () => {
+
+  it('deve acessar a pagina inicial', () => {
+    cy.visit('https://example.cypress.io')
+
+    cy.contains('Kitchen Sink').should('be.visible')
+  })
+
+})
