@@ -8,6 +8,12 @@ describe('Projeto Demo', ()=> {
 
         cy.contains('Kitchen Sink').should('be.visible')
 
+        cy.get('h1').should('be.visible')
+
+        cy.get('h1').should('contain.text', 'Kitchen Sink')
+
+        cy.get('[href="/commands/querying"]:visible').first().should('be.visible')
+
     })
 
 })

@@ -268,3 +268,50 @@ describe('Projeto Demo', () => {
   })
 
 })
+
+
+## Seletores e asserções
+
+### cy.get()
+
+Usado para localizar elementos através de seletores CSS.
+
+Exemplo:
+
+cy.get('h1')
+
+Também pode localizar por atributos:
+
+cy.get('[href="/commands/querying"]')
+
+### Asserções
+
+As asserções validam o estado ou conteúdo encontrado.
+
+Exemplos:
+
+cy.get('h1').should('be.visible')
+
+cy.get('h1').should('contain.text', 'Kitchen Sink')
+
+### Múltiplos elementos
+
+Um seletor pode retornar mais de um elemento.
+
+Para selecionar o primeiro:
+
+cy.get('[href="/commands/querying"]').first()
+
+Também é possível filtrar elementos visíveis:
+
+cy.get('[href="/commands/querying"]:visible')
+
+### Aprendizado com falha
+
+Ao utilizar `.first()` no seletor `[href="/commands/querying"]`, o primeiro elemento encontrado estava dentro de um menu oculto.
+
+O teste falhou porque `should('be.visible')` exige que o elemento esteja visível.
+
+Isso demonstrou que um seletor pode estar sintaticamente correto, mas não necessariamente identificar o elemento desejado para o teste.
+
+Sempre que possível, deve-se priorizar seletores específicos e estáveis em vez de depender de `.first()`, `.last()` ou `:visible` para contornar seletores pouco específicos.
