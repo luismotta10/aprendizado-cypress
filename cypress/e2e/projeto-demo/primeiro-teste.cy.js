@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+const { should } = require("chai")
+
 
 describe('Projeto Demo', ()=> {
 
@@ -12,7 +14,9 @@ describe('Projeto Demo', ()=> {
 
         cy.get('h1').should('contain.text', 'Kitchen Sink')
 
-        cy.get('[href="/commands/querying"]:visible').first().should('be.visible')
+        cy.get('[href="/commands/querying"]:visible').first().should('be.visible').click()
+        cy.url().should('include', '/commands/querying')
+        
 
     })
 
