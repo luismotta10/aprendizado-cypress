@@ -11,7 +11,6 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "chai": "^6.2.2",
     "cypress": "^15.20.1"
   }
 }
