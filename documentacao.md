@@ -364,3 +364,56 @@ Uma assertion deve validar um comportamento ou estado esperado do sistema.
 Nem toda ação precisa obrigatoriamente de uma assertion no mesmo elemento.
 
 Por exemplo, `.click()` executa a ação, enquanto `.should()` é utilizado quando existe uma condição esperada que possa ser validada.
+
+## Busca contextual com cy.find() e cy.contains()
+
+### cy.find()
+
+O `cy.find()` é utilizado para localizar elementos dentro de outro elemento já localizado.
+
+Exemplo:
+
+cy.get('.query-list')
+    .find('li')
+    .should('be.visible')
+
+Nesse caso:
+
+1. `cy.get('.query-list)` localiza a lista.
+2. `.find('li')` procura os elementos `<li>` dentro dessa lista.
+3. `.should('be.visible')` valida se os elementos encontrados estão visíveis.
+
+O `find()` é útil quando queremos restringir a busca a uma determinada área da página.
+
+### Busca contextual com contains()
+
+Também podemos utilizar `contains()` a partir de um elemento já localizado:
+
+cy.get('.query-list')
+    .contains('bananas')
+    .should('be.visible')
+
+Nesse caso, o Cypress procura o texto `bananas` somente dentro de `.query-list`.
+
+Isso é diferente de:
+
+cy.contains('bananas')
+
+que procura o texto na página sem restringir previamente o contexto.
+
+### Diferença
+
+- `cy.get()` → localiza por seletor.
+- `cy.contains()` → localiza pelo texto.
+- `cy.find()` → procura elementos dentro de um elemento já localizado.
+- `cy.get().contains()` → procura um texto dentro de um elemento específico.
+
+Exemplo de fluxo:
+
+cy.get('.query-list')
+    .contains('bananas')
+    .should('be.visible')
+
+O fluxo representa:
+
+Localizar elemento pai → restringir o contexto → localizar conteúdo → validar

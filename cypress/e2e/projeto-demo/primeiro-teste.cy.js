@@ -172,9 +172,36 @@ describe('Projeto Demo', () => {
             .should('be.visible')
 
             // Clica no elemento
-            .click()
+            .click()        
+    })
 
-        
+    // Cenário 10: localizar elementos dentro de uma lista
+    it('deve localizar elemento dentro da lista', () => {
+        cy.visit('https://example.cypress.io/commands/querying')
+
+        // Localiza a lista de frutas
+        cy.get('.query-list')
+
+            // Procura os elementos ,li. que estão dentro da lista
+            .find('li')
+
+            // Verifica se os elementos enconatrados estão visíveis
+            .should('be.visible')
+    })
+
+    // Cenário 11: localizar uma fruta específica dentro da lista
+    it('deve localizar uma fruta especifica dentro da lista', () => {
+        cy.visit('https://example.cypress.io/commands/querying')
+
+        // Localizar a lista de frutas
+        cy.get('.query-list')
+
+            // Procura o item dentro da lista
+            .contains('bananas')
+
+            // Verifica se a fruta está visível
+            .should('be.visible')
+                    
     })
 
 })
