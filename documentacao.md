@@ -315,3 +315,45 @@ O teste falhou porque `should('be.visible')` exige que o elemento esteja visíve
 Isso demonstrou que um seletor pode estar sintaticamente correto, mas não necessariamente identificar o elemento desejado para o teste.
 
 Sempre que possível, deve-se priorizar seletores específicos e estáveis em vez de depender de `.first()`, `.last()` ou `:visible` para contornar seletores pouco específicos.
+
+
+## Comandos básicos de interação e validação
+
+### Localização de elementos
+
+- `cy.get()` - localiza elementos utilizando seletores CSS.
+- `cy.contains()` - localiza elementos pelo texto/conteúdo.
+- `cy.find()` - localiza elementos dentro de outro elemento.
+
+### Assertions
+
+- `.should('be.visible')` - valida se o elemento está visível.
+- `.should('have.value', 'valor')` - valida o valor de campos de entrada.
+- `.should('have.text', 'texto')` - valida o texto de um elemento.
+
+### Interações
+
+- `.type()` - insere texto em campos.
+- `.clear()` - limpa o conteúdo de um campo.
+- `.select()` - seleciona uma opção em um dropdown.
+- `.check()` - marca checkbox ou radio button.
+- `.uncheck()` - desmarca checkbox.
+- `.click()` - realiza um clique no elemento.
+
+### Encadeamento
+
+Os comandos do Cypress podem ser encadeados para representar o fluxo do teste:
+
+cy.get()
+    .should()
+    .click()
+
+Exemplo:
+
+cy.get('#query-btn')
+    .should('be.visible')
+    .click()
+
+O fluxo representa:
+
+Localizar → Validar → Interagir
