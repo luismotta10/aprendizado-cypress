@@ -357,3 +357,10 @@ cy.get('#query-btn')
 O fluxo representa:
 
 Localizar → Validar → Interagir
+
+### Observação
+
+Uma assertion deve validar um comportamento ou estado esperado do sistema.
+Nem toda ação precisa obrigatoriamente de uma assertion no mesmo elemento.
+
+Por exemplo, `.click()` executa a ação, enquanto `.should()` é utilizado quando existe uma condição esperada que possa ser validada.
