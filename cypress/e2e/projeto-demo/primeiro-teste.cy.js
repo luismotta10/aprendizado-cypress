@@ -204,4 +204,58 @@ describe('Projeto Demo', () => {
                     
     })
 
+    // Cenário 12: localizar o primeiro elemento da lista
+    it('deve localizar o primeiro elemento da lista', () => {
+
+        cy.visit('https://example.cypress.io/commands/querying')
+
+        // Localiza a lista de frutas
+        cy.get('.query-list')
+
+            // Localiza todos os elementos <li> dentro da lista
+            .find('li')
+
+            // Seleciona somente o primeiro elemento encontrado
+            .first()
+
+            // Valida se o primeiro elemento está visível
+            .should('be.visible')
+    })
+
+    // Cenário 13: localizar o ultimo elemento da lista
+    it('deve localizar o ultimo elemento da lista', () => {
+        cy.visit('https://example.cypress.io/commands/querying')
+
+        // Localiza a lista de frutas
+        cy.get('.query-list')
+
+            // Localiza todos os elementos <li> dentro da lista
+            .find('li')
+
+            // Seleciona somente o ultimo elemento encontrado
+            .last()
+
+            // Valida se o primeiro elemento está visível
+            .should('be.visible')
+    })
+
+    // Cenário 14: localizar um elemento especifico pela posicao
+    it('deve localizar um elemeto especifico pela posicao', () => {
+        cy.visit('https://example.cypress.io/commands/querying')
+
+        // Localiza a lista de frutas
+        cy.get('.query-list')
+
+            // Localiza todos os elementos <li> dentro da lista
+            .find('li')
+
+            // Seleciona o elemento que está na posição 2
+            .eq(2)
+
+            // Valida se o primeiro elemento está visível
+            .should('be.visible')
+        
+    })
+
+
 })

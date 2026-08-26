@@ -417,3 +417,29 @@ cy.get('.query-list')
 O fluxo representa:
 
 Localizar elemento pai → restringir o contexto → localizar conteúdo → validar
+
+## Seleção de elementos
+
+Quando um comando retorna vários elementos, podemos selecionar um elemento específico utilizando:
+
+- `.first()` - seleciona o primeiro elemento.
+- `.last()` - seleciona o último elemento.
+- `.eq(indice)` - seleciona um elemento pela posição.
+
+Os índices do `.eq()` começam em `0`.
+
+Exemplo:
+
+cy.get('.query-list')
+    .find('li')
+    .eq(2)
+    .should('be.visible')
+
+Nesse exemplo, o Cypress encontra os elementos `li` da lista e seleciona o terceiro elemento.
+
+Exemplo de índices:
+
+0 → primeiro
+1 → segundo
+2 → terceiro
+3 → quarto
