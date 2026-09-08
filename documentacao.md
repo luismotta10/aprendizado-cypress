@@ -443,3 +443,79 @@ Exemplo de índices:
 1 → segundo
 2 → terceiro
 3 → quarto
+
+## Busca dentro de um elemento com within()
+
+O `within()` define um elemento como contexto para as buscas realizadas dentro do bloco.
+
+Exemplo:
+
+cy.get('.query-form').within(() => {
+    cy.get('#inputEmail')
+        .should('be.visible')
+
+    cy.get('#inputPassword')
+        .should('be.visible')
+})
+
+### Como funciona
+
+1. `cy.get('.query-form')` localiza o formulario.
+2. `.within()` define o formulario como contexto.
+3. `cy.get('#inputEmail')` procura o campo dentro do formulario.
+4. `cy.get('#inputPassword')` procura o campo dentro do formulario.
+
+### find() x within()
+
+- `find()` → localiza elementos descendentes e retorna esses elementos.
+- `within()` → define um elemento como contexto para novas buscas.
+
+Exemplo com find():
+
+cy.get('.query-form')
+    .find('#inputEmail')
+
+Exemplo com within():
+
+cy.get('.query-form').within(() => {
+    cy.get('#inputEmail')
+    cy.get('#inputPassword')
+})
+
+### Comparacao com Robot Framework
+
+No Robot Framework, utilizando SeleniumLibrary, normalmente o contexto é definido diretamente no locator.
+
+Exemplo:
+
+Element Should Be Visible    css:.query-form #inputEmail
+Element Should Be Visible    css:.query-form #inputPassword
+
+No Cypress, o contexto pode ser estabelecido com `within()`:
+
+cy.get('.query-form').within(() => {
+    cy.get('#inputEmail')
+    cy.get('#inputPassword')
+})
+
+Outra comparação:
+
+Cypress:
+
+cy.get('.query-form')
+    .find('#inputEmail')
+
+Robot Framework:
+
+Element Should Be Visible    css:.query-form #inputEmail
+
+### Conceito principal
+
+- `cy.get()` → localiza um elemento.
+- `find()` → procura elementos dentro de um elemento localizado.
+- `within()` → estabelece um elemento como contexto para novas buscas.
+- No Robot Framework, esse relacionamento geralmente é definido diretamente no locator usando CSS ou XPath.
+
+### Observacao
+
+O `within()` deve receber um unico elemento como contexto. Por isso, o seletor utilizado antes dele deve localizar um elemento especifico.

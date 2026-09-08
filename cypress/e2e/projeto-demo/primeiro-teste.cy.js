@@ -257,5 +257,25 @@ describe('Projeto Demo', () => {
         
     })
 
+    // Cenário 15: localizar elementos dentro de um formulario
+    it('deve localizar elementos dentro de um formulario', () => {
+
+        // Acessa a página de comandos de ações
+        cy.visit('https://example.cypress.io/commands/querying')
+
+        // Localiza o formulário e define ele como contexto da busca
+        cy.get('.query-form').within(() => {
+
+            // Localiza o primeiro campo email dentro do formulário e preenche
+            cy.get('#inputEmail')
+                .should('be.visible')
+                .type('testecypress@teste.com.br')
+                
+            // Verifica se o campo email está visível e preenche
+            cy.get('#inputPassword')
+                .should('be.visible')
+                .type('teste')
+        })
+    })
 
 })
