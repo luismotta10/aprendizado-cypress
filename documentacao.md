@@ -579,3 +579,80 @@ css:.query-form #inputEmail
 ### Observacao
 
 O `cy.root()` e principalmente util para identificar ou trabalhar com o elemento raiz do contexto atual. Nao e necessario utiliza-lo em todos os testes.
+
+## Percorrendo elementos com each()
+
+O `.each()` permite percorrer vários elementos encontrados pelo Cypress, executando uma ação ou validação para cada elemento.
+
+Exemplo:
+
+cy.get('.query-list')
+    .find('li')
+    .each(($item) => {
+        cy.wrap($item)
+            .should('be.visible')
+    })
+
+### Como funciona
+
+1. `cy.get('.query-list')` localiza a lista.
+2. `.find('li')` localiza todos os itens da lista.
+3. `.each()` percorre os elementos encontrados, um por vez.
+4. `$item` representa o elemento atual.
+5. `cy.wrap($item)` transforma o elemento atual em um objeto Cypress.
+6. `.should('be.visible')` valida a visibilidade do elemento.
+
+### Conceito principal
+
+Se a busca encontrar varios elementos:
+
+cy.get('.query-list')
+    .find('li')
+
+O `.each()` permite trabalhar individualmente com cada elemento:
+
+.each(($item) => {
+    // elemento atual
+})
+
+Exemplo:
+
+0 → apples
+1 → oranges
+2 → bananas
+3 → more apples
+
+### cy.wrap()
+
+O `cy.wrap()` permite transformar um valor ou elemento em um objeto que pode continuar sendo utilizado com comandos Cypress.
+
+No exemplo:
+
+cy.wrap($item)
+    .should('be.visible')
+
+O `$item` representa o elemento atual encontrado pelo `each()`.
+
+### Comparacao com Robot Framework
+
+No Robot Framework, o conceito pode ser comparado a obter uma lista de elementos e utilizar um `FOR` para percorrer cada elemento.
+
+Cypress:
+
+cy.get('.query-list')
+    .find('li')
+    .each(($item) => {
+        cy.wrap($item)
+            .should('be.visible')
+    })
+
+Robot Framework:
+
+${elementos}=    Get WebElements    css:.query-list li
+FOR    ${elemento}    IN    @{elementos}
+    Element Should Be Visible    ${elemento}
+END
+
+### Observacao
+
+O `.each()` e utilizado quando precisamos executar uma acao ou validacao individualmente para varios elementos.

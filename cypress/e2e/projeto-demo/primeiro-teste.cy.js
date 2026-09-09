@@ -293,5 +293,26 @@ describe('Projeto Demo', () => {
         
     })
 
+    // Cenário 17: percorrer elementos de uma lista
+    it('deve percorrer os elementos da lista', () => {
+
+        // Acessa a pagina de comandos de consulta
+        cy.visit('https://example.cypress.io/commands/querying')
+        
+        // Localiza todos os itens da lista
+        cy.get('.query-list')
+            .find('li')
+            .each(($item) => {
+                
+                // Valida que cada item da lista esta visivel
+                cy.wrap($item)
+                    .should('be.visible')
+
+
+            })
+        
+    })
+
+
 
 })
