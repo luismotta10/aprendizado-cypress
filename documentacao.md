@@ -519,3 +519,63 @@ Element Should Be Visible    css:.query-form #inputEmail
 ### Observacao
 
 O `within()` deve receber um unico elemento como contexto. Por isso, o seletor utilizado antes dele deve localizar um elemento especifico.
+
+## Elemento raiz com cy.root()
+
+O `cy.root()` retorna o elemento que representa o contexto atual de busca.
+
+Quando utilizado dentro de um `within()`, o `cy.root()` retorna o elemento que foi definido como contexto.
+
+Exemplo:
+
+cy.get('.query-form').within(() => {
+    cy.root()
+        .should('have.class', 'query-form')
+})
+
+### Como funciona
+
+1. `cy.get('.query-form')` localiza o formulario.
+2. `.within()` define o formulario como contexto.
+3. `cy.root()` retorna o elemento utilizado como contexto.
+4. `should()` valida que o elemento possui a classe esperada.
+
+### Conceito principal
+
+Dentro de um `within()`:
+
+cy.root()
+
+representa o elemento que esta sendo utilizado como contexto.
+
+Fluxo:
+
+cy.get()
+    ↓
+elemento encontrado
+    ↓
+within()
+    ↓
+contexto definido
+    ↓
+cy.root()
+    ↓
+retorna o contexto
+
+### Comparacao com Robot Framework
+
+No Robot Framework, nao existe uma necessidade comum de utilizar um comando equivalente ao `cy.root()` para esse tipo de situacao.
+
+No Cypress, o conceito de contexto e mais explicito:
+
+cy.get('.query-form').within(() => {
+    cy.root()
+})
+
+No Robot Framework, normalmente o relacionamento entre elementos e definido diretamente no locator:
+
+css:.query-form #inputEmail
+
+### Observacao
+
+O `cy.root()` e principalmente util para identificar ou trabalhar com o elemento raiz do contexto atual. Nao e necessario utiliza-lo em todos os testes.

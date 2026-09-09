@@ -1,7 +1,6 @@
 /// <reference types="cypress" />
 
 
-
 describe('Projeto Demo', () => {
 
     // Cenário 1: valida o acesso à página inicial
@@ -277,5 +276,22 @@ describe('Projeto Demo', () => {
                 .type('teste')
         })
     })
+
+    // Cenário 16: identifica o elemento raiz do contexto
+    it('deve identificar o formulario com o elemento raiz', () => {
+
+        // Acessa a pagina de comandos de consulta
+        cy.visit('https://example.cypress.io/commands/querying')
+
+        // Localiza o formulario e cria um contexto de busca
+        cy.get('.query-form').within(()=> {
+
+            // Retorna o elemnto que esta sendo usado como contexto
+            cy.root()
+                .should('have.class', 'query-form')
+        })
+        
+    })
+
 
 })
