@@ -656,3 +656,70 @@ END
 ### Observacao
 
 O `.each()` e utilizado quando precisamos executar uma acao ou validacao individualmente para varios elementos.
+
+## Validando atributos com have.attr
+
+O `have.attr` permite validar se um elemento possui determinado atributo e, opcionalmente, verificar o valor desse atributo.
+
+Exemplo:
+
+cy.get('#inputEmail')
+    .should('have.attr', 'placeholder', 'Email')
+
+### Como funciona
+
+1. `cy.get('#inputEmail')` localiza o campo pelo ID.
+2. `have.attr` informa que queremos validar um atributo HTML.
+3. `placeholder` é o atributo que será validado.
+4. `Email` é o valor esperado do atributo.
+
+### Comparacao com outras assertions
+
+- `have.value` → valida o valor de um campo de entrada.
+- `have.text` → valida o texto de um elemento.
+- `have.class` → valida uma classe CSS.
+- `have.attr` → valida um atributo HTML.
+
+Exemplo:
+
+cy.get('#inputEmail')
+    .should('have.value', 'teste@email.com')
+
+cy.get('#inputEmail')
+    .should('have.attr', 'placeholder', 'Email')
+
+### Exemplo de HTML
+
+<input
+    type="text"
+    id="inputEmail"
+    class="form-control"
+    placeholder="Email">
+
+Nesse elemento:
+
+- `id="inputEmail"` → ID
+- `type="text"` → atributo type
+- `class="form-control"` → classe CSS
+- `placeholder="Email"` → atributo placeholder
+
+Para localizar pelo ID:
+
+cy.get('#inputEmail')
+
+Para validar o placeholder:
+
+cy.get('#inputEmail')
+    .should('have.attr', 'placeholder', 'Email')
+
+### Observacao
+
+O `#` em um seletor CSS indica que estamos procurando um elemento pelo `id`.
+
+Exemplo:
+
+#inputEmail
+
+significa:
+
+"localize o elemento cujo id seja inputEmail".

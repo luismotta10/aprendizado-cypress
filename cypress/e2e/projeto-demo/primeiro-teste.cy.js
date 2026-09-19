@@ -313,6 +313,19 @@ describe('Projeto Demo', () => {
         
     })
 
+    // Cenário 18: validar atributo de um elemento
+    it('deve validar o atributo placeholder de um campo', () => {
+
+        // Acessa a pagina de comandos de consulta
+        cy.visit('https://example.cypress.io/commands/querying')
+
+        // Localiza o campo de email
+        cy.get('#inputEmail')
+
+            // Valida o atributo placeholder
+            .should('have.attr', 'placeholder', 'Email')
+        
+    })
 
 
 })
