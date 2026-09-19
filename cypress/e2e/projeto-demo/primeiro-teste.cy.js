@@ -327,5 +327,21 @@ describe('Projeto Demo', () => {
         
     })
 
+    // Cenário 19: validarse um campo esta desabilitado
+    it('deve validar se um campo esta desabilitado', () => {
+
+        // acessa a pagina de comandos de acoes
+        cy.visit('https://example.cypress.io/commands/actions')
+
+        // Localiza o campo desabilitado
+        cy.get('.action-disabled')
+
+            // Valida que o campo esta desabilitado
+            .should('be.disabled')
+        
+        
+    })
+    
+
 
 })

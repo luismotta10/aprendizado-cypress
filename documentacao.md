@@ -723,3 +723,46 @@ Exemplo:
 significa:
 
 "localize o elemento cujo id seja inputEmail".
+
+## Validando estado dos elementos
+
+O Cypress permite validar o estado atual de um elemento utilizando assertions como `be.disabled` e `be.enabled`.
+
+Exemplo:
+
+cy.get('.action-disabled')
+    .should('be.disabled')
+
+### Estados
+
+- `be.disabled` → valida que o elemento esta desabilitado.
+- `be.enabled` → valida que o elemento esta habilitado.
+
+Exemplo:
+
+cy.get('#inputEmail')
+    .should('be.enabled')
+
+### Comparacao com outras assertions
+
+- `have.attr` → valida um atributo HTML.
+- `have.value` → valida o valor de um campo.
+- `have.text` → valida o texto de um elemento.
+- `have.class` → valida uma classe CSS.
+- `be.disabled` → valida se o elemento esta desabilitado.
+- `be.enabled` → valida se o elemento esta habilitado.
+
+### Exemplo de HTML
+
+<textarea class="form-control action-disabled" disabled="disabled"></textarea>
+
+Nesse caso:
+
+cy.get('.action-disabled')
+    .should('be.disabled')
+
+valida que o campo esta desabilitado.
+
+### Conceito principal
+
+Assertions como `be.disabled` e `be.enabled` verificam o estado atual do elemento, sendo uteis para validar se um componente esta disponivel ou bloqueado para interacao.
