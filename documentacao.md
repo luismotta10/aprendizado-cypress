@@ -766,3 +766,64 @@ valida que o campo esta desabilitado.
 ### Conceito principal
 
 Assertions como `be.disabled` e `be.enabled` verificam o estado atual do elemento, sendo uteis para validar se um componente esta disponivel ou bloqueado para interacao.
+
+## Validando quantidade de elementos com have.length
+
+O `have.length` permite validar a quantidade de elementos retornados por uma busca.
+
+Exemplo:
+
+cy.get('.query-list')
+    .find('li')
+    .should('have.length', 4)
+
+### Como funciona
+
+1. `cy.get('.query-list')` localiza a lista.
+2. `.find('li')` localiza os elementos `li` dentro da lista.
+3. `have.length` valida a quantidade de elementos encontrados.
+4. `4` representa a quantidade esperada.
+
+### Conceito principal
+
+Se a busca retornar:
+
+4 elementos
+
+a assertion:
+
+cy.get('.query-list')
+    .find('li')
+    .should('have.length', 4)
+
+será aprovada.
+
+Se retornar uma quantidade diferente de 4, o teste falhara.
+
+### Diferenca entre length e eq()
+
+`have.length` valida a quantidade total de elementos:
+
+cy.get('.query-list')
+    .find('li')
+    .should('have.length', 4)
+
+`eq()` seleciona um elemento especifico pela posicao:
+
+cy.get('.query-list')
+    .find('li')
+    .eq(2)
+
+Os indices do `eq()` comecam em 0.
+
+### Aplicacoes
+
+`have.length` pode ser utilizado para validar:
+
+- quantidade de registros;
+- quantidade de linhas de uma tabela;
+- quantidade de cards;
+- quantidade de opcoes;
+- quantidade de itens em uma lista;
+- quantidade de elementos retornados por um seletor.
+

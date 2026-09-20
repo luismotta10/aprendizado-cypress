@@ -337,11 +337,23 @@ describe('Projeto Demo', () => {
         cy.get('.action-disabled')
 
             // Valida que o campo esta desabilitado
-            .should('be.disabled')
-        
+            .should('be.disabled')        
         
     })
     
+    // Cenário 20: validar a quantidade de elementos
+    it('deve validar a quantidade de itens da lista', () => {
+
+        // acessa a pagina de comandos de consulta
+        cy.visit('https://example.cypress.io/commands/querying')
+
+        // Localiza todos os itens da lista
+        cy.get('.query-list').find('li')
+
+            // Valida que a lista possui quantro itens
+            .should('have.length', 4)
+        
+    })
 
 
 })
