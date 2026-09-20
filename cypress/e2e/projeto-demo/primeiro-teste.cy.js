@@ -351,7 +351,22 @@ describe('Projeto Demo', () => {
         cy.get('.query-list').find('li')
 
             // Valida que a lista possui quantro itens
-            .should('have.length', 4)
+            .should('have.length', 4)        
+    })
+
+    // Cenário 21: validar texto parcial de um elemento
+    it('deve validar o texto de uma fruta', () => {
+
+        // acessa a pagina de comando de consulta
+        cy.visit('https://example.cypress.io/commands/querying')
+
+        // Localiza o primeiro iten da lista
+        cy.get('.query-list')
+        .find('li')
+        .first()
+
+        // valida que o elemento contem o texo apples
+        .should('contain.text', 'apples')
         
     })
 

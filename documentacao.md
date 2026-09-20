@@ -827,3 +827,71 @@ Os indices do `eq()` comecam em 0.
 - quantidade de itens em uma lista;
 - quantidade de elementos retornados por um seletor.
 
+## Validando texto com have.text e contain.text
+
+O Cypress possui assertions diferentes para validar o texto de um elemento.
+
+### have.text
+
+Valida o texto completo do elemento.
+
+Exemplo:
+
+cy.get('.query-list')
+    .find('li')
+    .first()
+    .should('have.text', 'apples')
+
+Nesse caso, o texto esperado deve corresponder ao texto do elemento.
+
+### contain.text
+
+Valida se o elemento contem determinado texto.
+
+Exemplo:
+
+cy.get('.query-list')
+    .find('li')
+    .first()
+    .should('contain.text', 'apples')
+
+Nesse caso, o elemento pode possuir outros textos, desde que contenha `apples`.
+
+### Diferenca
+
+- `have.text` → valida o texto completo.
+- `contain.text` → valida se o texto informado esta contido no elemento.
+
+Exemplo:
+
+Se o elemento possuir:
+
+Minha fruta: apples
+
+`contain.text` com `apples` sera aprovado.
+
+`have.text` com `apples` sera reprovado, pois o texto completo e diferente.
+
+### Comparacao com Robot Framework
+
+No Robot Framework:
+
+- `have.text` pode ser associado ao conceito de `Element Text Should Be`.
+- `contain.text` pode ser associado ao conceito de `Element Should Contain`.
+
+Cypress:
+
+cy.get('#elemento')
+    .should('have.text', 'Texto esperado')
+
+cy.get('#elemento')
+    .should('contain.text', 'Texto')
+
+Robot Framework:
+
+Element Text Should Be    locator    Texto esperado
+Element Should Contain    locator    Texto
+
+### Conceito principal
+
+Utilize `have.text` quando precisar validar o texto completo e `contain.text` quando apenas uma parte do texto for relevante para a validação.
